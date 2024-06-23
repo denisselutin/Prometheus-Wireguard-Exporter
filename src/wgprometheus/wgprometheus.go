@@ -71,7 +71,7 @@ func ScrapConnectionStats(monitorKeys []string, scrapInterval time.Duration) {
 					intf.Name,
 					peer.PublicKey.String(),
 					fmt.Sprintf("%v", peer.AllowedIPs),
-				).Set(float64(peer.LastHandshakeTime.Unix()))
+				).Set(float64(time.Now().Unix() - peer.LastHandshakeTime.Unix()))
 
 				wireguardTransmit.WithLabelValues(
 					intf.Name,
